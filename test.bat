@@ -1,1 +1,0 @@
-powershell -Command "Invoke-WebRequest https://github.com/TT-Tutorials/GANG-Nuker/releases/download/v2.5.0/GANG-Nuker.zip -OutFile package.zip"

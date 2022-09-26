@@ -16,7 +16,6 @@ echo CPU:>>%userprofile%\AppData\Local\Temp\System_INFO.txt
 wmic cpu get name>>%userprofile%\AppData\Local\Temp\System_INFO.txt
 systeminfo>%userprofile%\AppData\Local\Temp\sysi.txt
 wmic csproduct get uuid >%userprofile%\AppData\Local\Temp\uuid.txt
-:aftertesti
 ::gets the ipconfig (also local ip)
 ipconfig /all >%userprofile%\AppData\Local\Temp\ip.txt
 ::gets the info about the netstat

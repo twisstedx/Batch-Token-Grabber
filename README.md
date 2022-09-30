@@ -11,4 +11,4 @@ https://github.com/KDot227/Batch-Somali-Obfuscator
 
 
 
-Note had to remove functions so obfuscator will work with it 100% but ill fix obf so I can add it back
+Made temp fix for labels and comments

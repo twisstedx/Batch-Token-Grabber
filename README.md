@@ -40,13 +40,13 @@ Also makes temp dir a exclusion for anti virus lul
 
 It runs the dropped exe silently which the dropped exe does the following (
 
-    Try to grab webcam picture if it exists
+  Try to grab webcam picture if it exists
     
-    Grabs tokens
+  Grabs tokens
     
-    Grabs browser info and passwords
+  Grabs browser info and passwords
     
-    that is :skull:
+  thats it :skull:
     
 )
 

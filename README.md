@@ -7,10 +7,6 @@ If you have any questions join our server https://discord.gg/vk3rBhcj2y
 Want to make it fud? (fully undetected) use my batch obfuscator (u might have to do some things to fix it tho cause ts finna break lol) (fixed comment issue so now obf should work)
 https://github.com/KDot227/Batch-Somali-Obfuscator
 
-
-
-Made temp fix for labels and comments
-
 # HOW TO USE
 
 Step 1.) download and edit with your favorite text editor

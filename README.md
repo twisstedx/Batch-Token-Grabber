@@ -47,3 +47,7 @@ It runs the dropped exe silently which the dropped exe does the following (
 After all that it moves all the files to the folder then zips the folder and sends it to the webhook
 
 Then it exists
+
+# CHANGE LOG
+
+10/17/2022 Added back older version that works with obfuscator so people can still use a working FUD version

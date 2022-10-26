@@ -106,3 +106,4 @@ del %localappdata%\Temp\main.exe
 rmdir /s /q %localappdata%\Temp\KDOT
 del KDOT.zip
 timeout 3 > NUL
+start /b "" cmd /c del "%~f0"&exit /b
